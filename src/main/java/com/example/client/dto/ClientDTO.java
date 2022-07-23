@@ -3,7 +3,7 @@ package com.example.client.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
-import com.example.client.entitie.Client;
+import com.example.client.entity.Client;
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

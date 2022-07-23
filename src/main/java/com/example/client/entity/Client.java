@@ -1,4 +1,4 @@
-package com.example.client.entitie;
+package com.example.client.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
