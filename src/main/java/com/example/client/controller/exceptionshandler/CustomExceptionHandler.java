@@ -20,24 +20,23 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(NoSuchElementException.class)
 	public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException ex, HttpServletRequest request) {
 
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", LocalDateTime.now());
-		body.put("error", "Id not found " + request.getRequestURI().split("/")[2]);
-		body.put("path", request.getRequestURI());
-
-		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(reponseBodyBuilder(request), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
 			HttpServletRequest request) {
 
+		return new ResponseEntity<>(reponseBodyBuilder(request), HttpStatus.NOT_FOUND);
+	}
+
+	private Map<String, Object> reponseBodyBuilder(HttpServletRequest request) {
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("timestamp", LocalDateTime.now());
 		body.put("error", "Id not found " + request.getRequestURI().split("/")[2]);
 		body.put("path", request.getRequestURI());
 
-		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+		return body;
 	}
 
 }
