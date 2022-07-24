@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "tb_client")
 public class Client implements Serializable {
 	private static final long serialVersionUID = -7988669624709592931L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -23,7 +23,7 @@ public class Client implements Serializable {
 	private Double income;
 	private Instant birthDate;
 	private Integer children;
-	
+
 	public Client() {
 	}
 
@@ -100,5 +100,5 @@ public class Client implements Serializable {
 		Client other = (Client) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }
