@@ -1,7 +1,5 @@
 package com.example.client.service;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,5 +27,10 @@ public class ClientService {
 
 		Client entity = repository.findById(id).get();
 		return new ClientDTO(entity);
+	}
+
+	@Transactional
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 }
