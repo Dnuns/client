@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -25,6 +26,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
+			HttpServletRequest request) {
+
+		return new ResponseEntity<>(reponseBodyBuilder(request), HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex,
 			HttpServletRequest request) {
 
 		return new ResponseEntity<>(reponseBodyBuilder(request), HttpStatus.NOT_FOUND);
