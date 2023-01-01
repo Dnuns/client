@@ -3,37 +3,48 @@ package com.example.client.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Pattern;
+
 import com.example.client.entity.Client;
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotBlank(message = "Name should not be empty")
 	private String name;
-	private String cpf;
-	private Double income;
+	
+	@NotBlank(message = "CNI should not be empty")
+	@Pattern(regexp = "\\d{8}[MF]\\d{3}[A-Z]")
+	private String cni;
+	
+	@PositiveOrZero(message = "Amount should be a positive number")
+	private Double amount;
+	
+	@Past(message = "BirthDate should be a date in the past")
 	private Instant birthDate;
-	private Integer children;
 	
 	public ClientDTO() {
 	}
 
-	public ClientDTO(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+	public ClientDTO(Long id, String name, String cni, Double amount, Instant birthDate) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
-		this.income = income;
+		this.cni = cni;
+		this.amount = amount;
 		this.birthDate = birthDate;
-		this.children = children;
 	}
 	
 	public ClientDTO(Client entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
-		this.cpf = entity.getCpf();
-		this.income = entity.getIncome();
+		this.cni = entity.getCni();
+		this.amount = entity.getAmount();
 		this.birthDate = entity.getBirthDate();
-		this.children = entity.getChildren();
 	}
 
 	public Long getId() {
@@ -52,20 +63,20 @@ public class ClientDTO implements Serializable {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCni() {
+		return cni;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCpf(String cni) {
+		this.cni = cni;
 	}
 
-	public Double getIncome() {
-		return income;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setIncome(Double income) {
-		this.income = income;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 	public Instant getBirthDate() {
@@ -74,13 +85,5 @@ public class ClientDTO implements Serializable {
 
 	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
-	}
-
-	public Integer getChildren() {
-		return children;
-	}
-
-	public void setChildren(Integer children) {
-		this.children = children;
 	}
 }

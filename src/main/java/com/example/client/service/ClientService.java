@@ -40,8 +40,8 @@ public class ClientService {
 		
 		entity.setName(dto.getName());
 		entity.setBirthDate(dto.getBirthDate());
-		entity.setChildren(dto.getChildren());
-		entity.setCpf(dto.getCpf());
+		entity.setAmount(dto.getAmount());
+		entity.setCni(dto.getCni());
 		
 		return new ClientDTO(repository.save(entity));
 	}
@@ -51,8 +51,8 @@ public class ClientService {
 		Client entity = repository.getReferenceById(id);
 		entity.setName(dto.getName());
 		entity.setBirthDate(dto.getBirthDate());
-		entity.setChildren(dto.getChildren());
-		entity.setCpf(dto.getCpf());
+		entity.setAmount(dto.getAmount());
+		entity.setCni(dto.getCni());
 		
 		return new ClientDTO(repository.save(entity));
 	}

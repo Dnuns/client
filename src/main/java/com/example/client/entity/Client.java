@@ -19,21 +19,19 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String cpf;
-	private Double income;
+	private String cni;
+	private Double amount;
 	private Instant birthDate;
-	private Integer children;
 
 	public Client() {
 	}
 
-	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+	public Client(Long id, String name, String cni, Double amount, Instant birthDate) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
-		this.income = income;
+		this.cni = cni;
+		this.amount = amount;
 		this.birthDate = birthDate;
-		this.children = children;
 	}
 
 	public Long getId() {
@@ -52,20 +50,20 @@ public class Client implements Serializable {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCni() {
+		return cni;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCni(String cni) {
+		this.cni = cni;
 	}
 
-	public Double getIncome() {
-		return income;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setIncome(Double income) {
-		this.income = income;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 	public Instant getBirthDate() {
@@ -74,14 +72,6 @@ public class Client implements Serializable {
 
 	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
-	}
-
-	public Integer getChildren() {
-		return children;
-	}
-
-	public void setChildren(Integer children) {
-		this.children = children;
 	}
 
 	@Override
