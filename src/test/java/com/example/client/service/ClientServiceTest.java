@@ -14,7 +14,6 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -39,7 +38,6 @@ public class ClientServiceTest {
 	
 	private long existingId;
 	private long nonExistingId;
-	private long dependentId;
 	private Client client;
 	ClientDTO clientDTO;
 	private PageImpl<Client> page;	
@@ -48,7 +46,6 @@ public class ClientServiceTest {
 	void setUp() throws Exception {
 		existingId = 1L;
 		nonExistingId = 1000L;
-		dependentId = 3L;
 		client = Factory.createClient();
 		clientDTO = Factory.createClientDTO();
 		page = new PageImpl<>(List.of(client));
@@ -62,7 +59,6 @@ public class ClientServiceTest {
 		
 		Mockito.doNothing().when(repository).deleteById(existingId);
 		Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
-		Mockito.doThrow(DataIntegrityViolationException.class).when(repository).deleteById(dependentId);
 	}
 	
 	@Test
@@ -74,7 +70,7 @@ public class ClientServiceTest {
 	}
 	
 	@Test
-	public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
+	public void findByIdShouldThrowNoSuchElementExceptionWhenIdDoesNotExist() {
 		// assert
 		Assertions.assertThrows(NoSuchElementException.class, () -> {
 			service.findById(nonExistingId);
@@ -105,7 +101,7 @@ public class ClientServiceTest {
 	
 	
 	@Test
-	public void deleteShouldThrowNullPointerExceptionWhenIdDoesNotExist() {
+	public void deleteShouldThrowEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
 		
 		Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
 			service.delete(nonExistingId);
