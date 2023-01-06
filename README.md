@@ -1,6 +1,6 @@
 # Client API
 
-This is simple CRUD and REST API.
+This is simple REST API CRUD.
 
 ## Tech Stack
 
