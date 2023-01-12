@@ -22,7 +22,7 @@ This is simple REST API CRUD.
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | **Required**. Id of the client to fetch |
 
 #### Add client
 
@@ -46,7 +46,7 @@ This is simple REST API CRUD.
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `string` | **Required**. Id of client to update |
 
 ```
 {
